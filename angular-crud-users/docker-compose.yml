@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  angular:    
+    container_name: angular
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - 'APP_ENV=dev'
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'      
+    ports:
+      - '4200:4200'

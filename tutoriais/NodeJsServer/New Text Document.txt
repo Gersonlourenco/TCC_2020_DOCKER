@@ -1,0 +1,1 @@
+The server is started with node server.js and will provide the API to query two different users based on their ID. For example http://localhost:3000/2 will output:

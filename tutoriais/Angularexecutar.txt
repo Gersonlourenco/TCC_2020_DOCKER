@@ -1,0 +1,11 @@
+cd C:\opt\tcc\angular-crud-users
+docker build -t angular:dev .
+docker run -i -t -v ${PWD}:/app -v /app/node_modules -p 80:80 --rm angular:dev
+
+
+docker run --rm -it -v %cd%:/usr/src/project gcc:4.9
+
+
+
+
+docker run -v ${PWD}:/app -v /app/node_modules -p 4201:4200 --rm example:dev

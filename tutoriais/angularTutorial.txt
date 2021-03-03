@@ -1,0 +1,45 @@
+npm install -g @angular/cli
+ng -v
+ng new traning-bank
+cd traning-bank
+npm install --save @angular/material @angular/cdk
+npm install --save @angular/animations
+npm install bootstrap --save
+npm install jquery --save
+
+ng s
+
+--criando componentes
+ng generate component <nome>
+ng generate component crud/home
+
+--criando modulos
+ng g m route --routing
+
+ng g m app-routing --flat --module=app
+
+--criando serviços
+ng generate service <nome>
+
+
+--criando modelo
+ng generate class <nome>
+
+
+
+$ ng generate component crud/update
+
+
+
+--gerar versao producao
+ng build --prod
+
+ng build --prod --output-path docs --base-href /<project_name>/
+make a copy of docs/index.html and name it docs/404.html.
+configure it to publish from the docs folder.
+
+
+
+
+
+go https://<user_name>.github.io/<project_name>/

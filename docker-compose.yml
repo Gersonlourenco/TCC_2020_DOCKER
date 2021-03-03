@@ -1,0 +1,75 @@
+version: '3.7'
+services:
+    version: '3.7'
+services:
+    mysql:
+        image: mysql:5.7
+        container_name: mysql
+        ports:
+          - '3306:3306'
+        volumes:
+          - db:/var/lib/mysql/
+        environment:
+            MYSQL_ROOT_PASSWORD: teste
+            MYSQL_DATABASE: cruduser
+            MYSQL_USER: cruduser
+            MYSQL_PASSWORD: teste
+    php:
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        container_name: php
+        depends_on:
+          - mysql
+        build:
+          context: ./php-crud-users
+          dockerfile: Dockerfile
+          args:
+            - 'APP_ENV=dev'
+        volumes:
+          - './php-crud-users:/var/www/app'
+        ports:
+          - '8000:8000'
+        links:
+          - mysql
+    react:    
+        container_name: tcc_react
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        depends_on:
+          - php
+        build:
+          context: ./react-crud-users
+          dockerfile: Dockerfile
+          args:
+            - 'APP_ENV=dev'
+        volumes:
+          - './react-crud-users:/app'
+          - '/app/node_modules'      
+        ports:
+          - '3000:3000'   
+        links:
+          - php          
+    angular:
+        container_name: tcc_angular
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t 
+        depends_on:
+          - php        
+        build:
+          context: ./angular-crud-users
+          dockerfile: Dockerfile
+          args:
+            - 'APP_ENV=dev'
+        volumes:
+          - './angular-crud-users:/app'
+          - '/app/node_modules'     
+        ports:
+          - '4200:4200'
+        links:
+          - php
+        #command: > 
+        #    bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
+          
+#docker rm angular
+volumes:
+    db:

@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+    mydb:
+        image: mysql:5.7
+        container_name: mydb
+        ports:
+          - '3306:3306'
+        volumes:
+          - mysql:/var/lib/mysql/
+        environment:
+            MYSQL_ROOT_PASSWORD: teste
+            MYSQL_DATABASE: cruduser
+            MYSQL_USER: cruduser
+            MYSQL_PASSWORD: teste
+    app:
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        depends_on:
+          - mydb
+        build:
+          context: .
+          dockerfile: Dockerfile
+          args:
+            - 'APP_ENV=dev'
+        volumes:
+          - './:/var/www/app'
+        ports:
+          - '8000:8000'
+        links:
+          - mydb
+    
+volumes:
+  mysql:

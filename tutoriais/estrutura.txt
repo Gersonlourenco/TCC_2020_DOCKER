@@ -1,0 +1,11 @@
+components
+	pages
+		login
+			login
+			register
+			recupera-senha
+		user
+			edit
+			create
+services
+models

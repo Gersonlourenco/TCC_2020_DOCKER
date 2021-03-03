@@ -1,0 +1,26 @@
+
+cd C:\NaoSincronizado\testeDocker\react-crud-users
+docker build -t sample:dev .
+docker run -i -t -v ${PWD}:/react -v /react/node_modules -p 3000:3000 --rm sample:dev
+
+
+
+
+
+
+docker run -v ${PWD}:/app -v /app/node_modules -p 3001:3000 --rm sample:dev
+docker run --rm -it -v %cd%:/usr/src/project gcc:4.9
+
+
+version: "3"
+services:
+  app:
+    image: app:1.2.3
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+
+
+docker run -i -t -v ${PWD}:/react -v /react/node_modules -p 3000:3000 --rm sample:dev
+
+docker build -t node .
+docker run -dp 3000:3000 node

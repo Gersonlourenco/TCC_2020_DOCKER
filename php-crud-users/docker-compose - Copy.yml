@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+  php:    
+    container_name: php
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    image: php:7.2-fpm  
+    volumes:
+      - '.:/var/www/myapp'
+      - './docker/php.ini:/usr/local/etc/php/php.ini'
+      #- '/app/node_modules'      
+      #- /var/www/docker-study.loc/recipe-05/php:/var/www/myapp
+      #- /var/www/docker-study.loc/recipe-05/docker/php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - '3000:3000'
+    #networks:
+     # - app-network
+      
+      
+      
+  composer:
+    image: composer:1.9
+    command: ["composer", "install"]
+    volumes:
+      - /var/www/composer.loc/recipe-05/php:/app
+    #networks:
+     # - app-network
+
+#MySQL Service
+  db:
+    image: mysql:5.7.22
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - app-network
+      
+#Docker Networks
+#networks:
+  #app-network:
+    #driver: bridge

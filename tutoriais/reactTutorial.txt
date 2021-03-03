@@ -1,0 +1,25 @@
+
+npm install -g create-react-app
+create-react-app demo-app
+cd demo-app
+
+npm install bootstrap@4.1.3 jquery@3.3.1 popper.js@1.14.3 --save
+npm install axios
+npm install react-router-dom
+
+--rodar
+npm start
+
+--Ferramenta cli
+npm i -g generate-react-cli
+
+--criando componentes
+generate-react component Box
+
+--criando modulos
+
+--criando serviços
+
+--criando modelo
+
+--gerar versao producao
